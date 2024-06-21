@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Select Destination</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <h1>Welcome, <%= user.userName %>!</h1>
+  <p>Please select your destination:</p>
+  <form action="/chat" method="GET" style="display: inline;">
+    <button type="submit">Go to Chat</button>
+  </form>
+  <form action="/groups" method="GET" style="display: inline;">
+    <button type="submit">Go to Groups</button>
+  </form>
+  <a href="/logout">Logout</a>
+</body>
+</html>

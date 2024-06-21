@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Groups</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <h1>Groups</h1>
+  <form action="/api/groups/create" method="POST">
+    <input type="text" name="name" placeholder="Group Name" required>
+    <button type="submit">Create Group</button>
+  </form>
+  <h2>Your Groups</h2>
+  <ul>
+    <% groups.forEach(group => { %>
+      <li>
+        <%= group.name %> (Admin: <%= group.admin %>)
+        <form action="/api/groups/<%= group.name %>/add" method="POST">
+          <input type="text" name="memberId" placeholder="Member ID to Add" required>
+          <button type="submit">Add Member</button>
+        </form>
+        <form action="/api/groups/<%= group.name%>/remove" method="POST">
+          <input type="text" name="memberId" placeholder="Member ID to Remove" required>
+          <button type="submit">Remove Member</button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
+  <a href="/chat">Back to Chat</a>
+  <a href="/logout">Logout</a>
+</body>
+</html>

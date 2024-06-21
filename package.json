@@ -1,0 +1,32 @@
+{
+  "name": "aventus_test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest",
+    "start":"node app"
+  },
+  "author": "Sanjay",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "http": "^0.0.1-security",
+    "http-errors": "^2.0.0",
+    "jest": "^29.7.0",
+    "joi": "^17.13.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.4.3",
+    "moongoose": "^0.0.5",
+    "path": "^0.12.7",
+    "socket.io": "^4.7.5",
+    "supertest": "^7.0.0"
+  }
+}

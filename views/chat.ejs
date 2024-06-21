@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat Room</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const socket = io();
+
+      socket.emit('join', '<%= username %>');
+
+      const sendMessageForm = document.getElementById('sendMessageForm');
+      const messagesContainer = document.getElementById('messagesContainer');
+
+      sendMessageForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const messageInput = document.getElementById('messageInput');
+        const messageContent = messageInput.value;
+        const senderId = '<%= username %>'; 
+        const recipients = document.getElementById('recipients').value.split(','); 
+        const group = ''; 
+
+        socket.emit('sendMessage', { senderId, content: messageContent, recipients, group });
+
+        messageInput.value = '';
+      });
+
+      socket.on('receiveMessage', (message) => {
+        const messageElement = document.createElement('div');
+        messageElement.innerText = `${message.sender}: ${message.content}`;
+        messagesContainer.appendChild(messageElement);
+      });
+    });
+  </script>
+</head>
+<body>
+  <h1>Chat Room</h1>
+  <div id="userDetails">
+    Logged in as: <%= username %>
+  </div>
+  <div id="messagesContainer">
+    <% messages.forEach(message => { %>
+      <div><%= message.sender %>: <%= message.content %></div>
+    <% }) %>
+  </div>
+  <form id="sendMessageForm">
+    <input type="text" id="messageInput" placeholder="Type a message" required>
+    <input type="text" id="recipients" placeholder="Recipient IDs (comma-separated)" required>
+    <button type="submit">Send</button>
+  </form>
+  <a href="/logout">Logout</a>
+</body>
+</html>
